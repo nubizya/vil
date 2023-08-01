@@ -1,3 +1,4 @@
+"""Module start_vil"""
 import sys
 
 from uvicorn import run
