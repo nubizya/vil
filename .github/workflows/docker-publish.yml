@@ -91,7 +91,8 @@ jobs:
         env:
           # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
           TAGS: docker.io/nunyabizns/vil:main
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_SECRET }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: cosign sign --yes --key ${{ secrets.DOCKER_SECRET }} "${TAGS}@${DIGEST}"
+        run: cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
