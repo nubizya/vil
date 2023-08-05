@@ -1,6 +1,6 @@
 """Module main"""
 from fastapi import FastAPI
-from .routes.root import root_router
+from .route.root import root_router
 
 app = FastAPI()
 
